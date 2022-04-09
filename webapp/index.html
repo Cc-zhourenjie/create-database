@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+    <script type="text/javascript" src="/core/main/common.js"></script>
+    <!-- <script type="text/javascript" src="/core/main/main.js"></script> -->
+    <!-- <script type="text/javascript" src="/index.js"></script> -->
+    <script>
+        window.importjs([
+            "/index.js"
+        ]);
+    </script>
+
+</head>
+
+<body>
+    <form class="layui-form" lay-filter="table_form" style="padding-top: 50px;padding-left: 200px;">
+        <div class="layui-form-item">
+            <label class="layui-form-label">表名称</label>
+            <div class="layui-input-block">
+                <input type="text" name="table_name" style="width: 300px;" id="table_name" lay-verify="required"
+                    placeholder="请输入数据表名称" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">表中文名</label>
+            <div class="layui-input-block">
+                <input type="text" name="remark" style="width: 300px;" id="remark" placeholder="请输入表中文名"
+                    autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">主键字段名</label>
+            <div class="layui-input-block">
+                <input type="text" name="primary_field_name" style="width: 300px;" id="primary_field_name"
+                    lay-verify="required" placeholder="请输入主键名" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <!-- 下拉框 -->
+        <div class="layui-form-item">
+            <label class="layui-form-label">主键字段类型</label>
+            <div class="layui-input-inline">
+                <select name="primary_field_type" id="primary_field_type" lay-filter="lay-primary_field_type">
+                    <option value="varchar" selected>varchar</option>
+                    <option value="int">int</option>
+                    <option value="decimal">decimal</option>
+                    <option value="text">text</option>
+                    <option value="timestamp">timestamp</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">主键字段长度</label>
+            <div class="layui-input-block">
+                <input type="text" name="primary_field_length" style="width: 300px;" id="primary_field_length"
+                    lay-verify="number" placeholder="请输入主键名" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn" type="button" lay-submit id="submit" lay-filter="formDemo">立即提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+    </form>
+</body>
+
+</html>
