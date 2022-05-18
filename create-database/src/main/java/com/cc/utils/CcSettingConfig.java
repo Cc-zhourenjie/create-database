@@ -43,6 +43,11 @@ public class CcSettingConfig {
                 SAXReader reader = new SAXReader();
                 // 读取xml文件，得到Document对象
                 Document document = reader.read(file);
+                /**
+                * Element root = document.selectSingleNode("/sqls/sql[@id='"+sqlId+"']")
+                * root.selectSingleNode("script")
+                * root.selectSingleNode("script").asXML().trim()
+                */
                 // 获取根元素
                 Element root = document.getRootElement();
                 return new CcSettingConfig(root.elementIterator());
