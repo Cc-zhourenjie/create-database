@@ -1,22 +1,33 @@
 package com.cc.service.impl;
 
+import com.cc.mybaits.utils.CcMapperUtils;
 import com.cc.pojo.vo.TableInfoVO;
 import com.cc.service.TableInfoService;
-import com.cc.utils.CcSettingConfig;
-import com.cc.utils.CcString;
-import com.cc.utils.DBUtil;
+import com.cc.utils.CcSql;
+import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 数据表服务层
+ *
+ * @author cc
  */
 @Service
 public class TableInfoServiceImpl implements TableInfoService {
 
-
+    /**
+     * 日志服务
+     */
     private static final Logger log = LoggerFactory.getLogger(TableInfoServiceImpl.class);
+
+    @Autowired
+    private SqlSession sqlSession;
 
     /**
      * 创建表，基础表结构
@@ -25,23 +36,18 @@ public class TableInfoServiceImpl implements TableInfoService {
      */
     public Boolean createTable(TableInfoVO tableInfoVO) {
         try {
-            String tableName = tableInfoVO.getTableName();
-            String remark = " ";
-            if (CcString.isNotEmpty(tableInfoVO.getRemark())) {
-                remark = tableInfoVO.getRemark();
-            }
-            String fieldName = tableInfoVO.getPrimaryFieldName();
-            String fieldType = tableInfoVO.getPrimaryFieldType();
-            if (CcString.equal("varchar", tableInfoVO.getPrimaryFieldType()) || CcString.equal("decimal", tableInfoVO.getPrimaryFieldType())) {
-                fieldType += "(" + tableInfoVO.getPrimaryFieldLength() + ")";
-            }
-            CcSettingConfig settingConfig = CcSettingConfig.buildXML("core", "test");
-            String createTableSql = settingConfig.getText("create_table");
-            createTableSql = createTableSql.replace("#{table_name}", tableName)
-                    .replace("#{field_name}", fieldName)
-                    .replace("#{field_type}", fieldType)
-                    .replace("#{remark}", remark);
-            DBUtil.changeDate(createTableSql);
+            //获取sql
+            String createTableSql = CcSql.getSqlText("core", "test", "create_table");
+            CcMapperUtils ccMapperUtils = new CcMapperUtils();
+            //构架sql条件
+            Map<String, Object> condition = new HashMap<>();
+            condition.put("table_name", tableInfoVO.getTableName());
+            condition.put("table_comment", tableInfoVO.getTableComment());
+            condition.put("field_name", tableInfoVO.getFieldName());
+            condition.put("field_type", tableInfoVO.getFieldType() + "(" + tableInfoVO.getFieldLength() + ")");
+            condition.put("field_comment", tableInfoVO.getFieldNameEn());
+            condition.put("table_name", tableInfoVO.getTableName());
+            boolean insert = ccMapperUtils.insert(createTableSql, condition);
             return true;
         } catch (Exception e) {
             log.error("新增基础表结构异常", e);

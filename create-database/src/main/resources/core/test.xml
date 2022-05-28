@@ -1,27 +1,32 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<settings>
+<sqls>
     <!--  创建数据表  -->
-    <setting name="create_table">
-        create table #{table_name}(
-            #{field_name} #{field_type} primary key not null
-        ) COMMENT = '#{remark}';
-    </setting>
+    <sql id="create_table">
+        <script>
+            CREATE TABLE ${table_name}(
+            ${field_name} ${field_type} PRIMARY KEY NOT NULL
+            <if test="field_comment != null">
+                COMMENT #{field_comment}
+            </if>
+            ) COMMENT = #{table_comment};
+        </script>
+    </sql>
 
     <!--  创建字段  -->
-    <setting name="create_field">
+    <sql id="create_field">
         alter table #{table_name} add #{field_name} #{field_type};
-    </setting>
+    </sql>
 
     <!--  判断是否可以为空  -->
-    <setting name="is_null">
+    <setting id="is_null">
         #{is_null}
     </setting>
 
     <!--  添加字段或者数据表注释/备注  -->
-    <setting name="remark">
+    <setting id="remark">
         COMMENT = '#{remark}';
     </setting>
 
-</settings>
+</sqls>
 

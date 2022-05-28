@@ -12,7 +12,7 @@ import java.io.IOException;
 /**
  * 核心过滤器
  *
- * @author szy
+ * @author zrj
  */
 @Component
 public class CoreFilter implements Filter {

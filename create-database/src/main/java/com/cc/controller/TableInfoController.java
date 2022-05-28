@@ -34,9 +34,7 @@ public class TableInfoController {
     public ResultData createTable(@RequestBody TableInfoVO tableInfoVO) {
         ResultData resultData = ResultData.init();
         Boolean flag = tableInfoService.createTable(tableInfoVO);
-        if (flag) resultData = ResultData.success(flag);
-        else resultData = ResultData.failedMsg("创建数据表异常！");
-
+        if (!flag) ResultData.failedMsg("创建数据表异常！");
         return resultData;
     }
 

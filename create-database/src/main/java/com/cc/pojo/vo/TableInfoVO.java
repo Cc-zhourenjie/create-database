@@ -4,10 +4,11 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * 数据库信息对象
+ *
+ * @author zrj
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class TableInfoVO implements Serializable {
@@ -19,34 +20,40 @@ public class TableInfoVO implements Serializable {
     private String tableName;
 
     /**
-     * 注释
+     * 表注释
      */
-    @JsonProperty("remark")
-    private String remark;
+    @JsonProperty("table_comment")
+    private String tableComment;
 
     /**
      * 主键字段
      */
-    @JsonProperty("primary_field_name")
-    private String primaryFieldName;
+    @JsonProperty("field_name")
+    private String fieldName;
+
+    /**
+     * 主键字段中文名
+     */
+    @JsonProperty("field_name_en")
+    private String fieldNameEn;
 
     /**
      * 主键字段类型
      */
-    @JsonProperty("primary_field_type")
-    private String primaryFieldType;
+    @JsonProperty("field_type")
+    private String fieldType;
 
     /**
      * 主键字段长度
      */
-    @JsonProperty("primary_field_length")
-    private Integer primaryFieldLength;
+    @JsonProperty("field_length")
+    private Integer fieldLength;
 
     /**
-     * 字段集合
+     * 字段小数位数
      */
-    @JsonProperty("fields")
-    private List<FieldInfoVO> fieldInfoVOS;
+    @JsonProperty("field_decimal")
+    private Integer fieldDecimal;
 
     public String getTableName() {
         return tableName;
@@ -56,43 +63,52 @@ public class TableInfoVO implements Serializable {
         this.tableName = tableName;
     }
 
-    public String getRemark() {
-        return remark;
+    public String getTableComment() {
+        return tableComment;
     }
 
-    public void setRemark(String remark) {
-        this.remark = remark;
+    public void setTableComment(String tableComment) {
+        this.tableComment = tableComment;
     }
 
-    public String getPrimaryFieldName() {
-        return primaryFieldName;
+    public String getFieldName() {
+        return fieldName;
     }
 
-    public void setPrimaryFieldName(String primaryFieldName) {
-        this.primaryFieldName = primaryFieldName;
+    public void setFieldName(String fieldName) {
+        this.fieldName = fieldName;
     }
 
-    public String getPrimaryFieldType() {
-        return primaryFieldType;
+    public String getFieldNameEn() {
+        return fieldNameEn;
     }
 
-    public void setPrimaryFieldType(String primaryFieldType) {
-        this.primaryFieldType = primaryFieldType;
+    public void setFieldNameEn(String fieldNameEn) {
+        this.fieldNameEn = fieldNameEn;
     }
 
-    public Integer getPrimaryFieldLength() {
-        return primaryFieldLength;
+    public String getFieldType() {
+        return fieldType;
     }
 
-    public void setPrimaryFieldLength(Integer primaryFieldLength) {
-        this.primaryFieldLength = primaryFieldLength;
+    public void setFieldType(String fieldType) {
+        this.fieldType = fieldType;
     }
 
-    public List<FieldInfoVO> getFieldInfoVOS() {
-        return fieldInfoVOS;
+    public Integer getFieldLength() {
+        return fieldLength;
     }
 
-    public void setFieldInfoVOS(List<FieldInfoVO> fieldInfoVOS) {
-        this.fieldInfoVOS = fieldInfoVOS;
+    public void setFieldLength(Integer fieldLength) {
+        this.fieldLength = fieldLength;
+    }
+
+
+    public Integer getFieldDecimal() {
+        return fieldDecimal;
+    }
+
+    public void setFieldDecimal(Integer fieldDecimal) {
+        this.fieldDecimal = fieldDecimal;
     }
 }

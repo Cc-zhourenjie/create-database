@@ -1,13 +1,12 @@
 package com.cc.mybaits.utils;
 
 
-import org.apache.commons.collections4.MapUtils;
-import org.apache.ibatis.builder.SqlSourceBuilder;
 import org.apache.ibatis.builder.StaticSqlSource;
 import org.apache.ibatis.mapping.*;
 import org.apache.ibatis.scripting.LanguageDriver;
 import org.apache.ibatis.session.Configuration;
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.context.ApplicationContext;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,24 +44,26 @@ public class CcMapperUtils {
      */
     private LanguageDriver languageDriver;
 
+    private static ApplicationContext applicationContext;
+
     /**
      * 无参构造方法
      */
     public CcMapperUtils() {
+        this.sqlSession = CcMapperUtils.applicationContext.getBean(SqlSession.class);
+        builderConfiguration(this.sqlSession.getConfiguration());
     }
 
     /**
      * 传入SqlSession
      */
     public CcMapperUtils(SqlSession sqlSession) {
-//        this.configuration = sqlSession.getConfiguration();
-//        DefaultConfigBuilder defaultConfigBuilder = new DefaultConfigBuilder();
-//        Configuration configuration = defaultConfigBuilder.parseConfiguration();
-//        builderConfiguration(configuration);
-//        SqlSessionFactory sqlSessionFactory = new DefaultSqlSessionFactory(configuration);
-//        this.sqlSession = sqlSessionFactory.openSession();
         builderConfiguration(sqlSession.getConfiguration());
         this.sqlSession = sqlSession;
+    }
+
+    public static void setApplicationContext(ApplicationContext applicationContext) {
+        CcMapperUtils.applicationContext = applicationContext;
     }
 
     /**
@@ -148,21 +149,14 @@ public class CcMapperUtils {
      * @return
      */
     private String insertReturnMsId(String sql, Map<String, Object> condition) {
-        //如果没有传入参数就不做参数替换处理
-        List<ParameterMapping> parameterMappings = null;
-        if (MapUtils.isEmpty(condition)) {
-            SqlSourceBuilder sqlSourceBuilder = new SqlSourceBuilder(this.configuration);
-            SqlSource parse = sqlSourceBuilder.parse(sql, Map.class, condition);
-            BoundSql boundSql = parse.getBoundSql(condition);
-            parameterMappings = boundSql.getParameterMappings();
-            sql = boundSql.getSql();
-        }
         //构建msId
-        String msId = createMsId(Boolean.class + sql, SqlCommandType.INSERT);
+        String msId = createMsId(condition.getClass() + sql, SqlCommandType.INSERT);
         if (hashMappedStatement(msId)) {
             return msId;
         }
-        StaticSqlSource staticSqlSource = new StaticSqlSource(configuration, sql, parameterMappings);
+        //通过MyBatis识别语言服务做sql中的参数替换和标签处理
+        SqlSource staticSqlSource = languageDriver.createSqlSource(this.configuration, sql, condition.getClass());
+        //构建插入的Statement
         buildInsertMappedStatement(msId, staticSqlSource);
         return msId;
     }
@@ -186,7 +180,7 @@ public class CcMapperUtils {
      */
     private String createMsId(String sql, SqlCommandType sqlCommandType) {
         StringBuilder msId = new StringBuilder(getClass().getName() + "." + sqlCommandType.toString());
-        msId.append("." + sql);
+        msId.append("." + sql.hashCode());
         return msId.toString();
     }
 
@@ -197,7 +191,7 @@ public class CcMapperUtils {
      * @param sqlSource
      * @param resultType
      */
-    private void buildSelectMappedStatement(final String key, SqlSource sqlSource, final Class<?> resultType) {
+    private void buildSelectMappedStatement(String key, SqlSource sqlSource, final Class<?> resultType) {
         MappedStatement mappedStatement = new MappedStatement.Builder(configuration, key, sqlSource, SqlCommandType.SELECT)
                 .resultMaps(new ArrayList<ResultMap>() {{
                     add(new ResultMap.Builder(configuration, defaultResultMapId, resultType, new ArrayList<ResultMapping>(0)).build());
@@ -211,13 +205,60 @@ public class CcMapperUtils {
      * @param key
      * @param sqlSource
      */
-    private void buildInsertMappedStatement(final String key, SqlSource sqlSource) {
+    private void buildInsertMappedStatement(String key, SqlSource sqlSource) {
         MappedStatement mappedStatement = new MappedStatement.Builder(configuration, key, sqlSource, SqlCommandType.INSERT)
                 .resultMaps(new ArrayList<ResultMap>() {{
                     add(new ResultMap.Builder(configuration, defaultResultMapId, Boolean.class, new ArrayList<ResultMapping>(0)).build());
                 }}).build();
         configuration.addMappedStatement(mappedStatement);
     }
+
+
+//手动处理参数替换机制
+//    private String insertReturnMsId(String sql, Map<String, Object> condition) {
+    //如果没有传入参数就不做参数替换处理
+//        List<ParameterMapping> parameterMappings = null;
+//        StaticSqlSource staticSqlSource = null;
+//        if (MapUtils.isNotEmpty(condition)) {
+//            /**
+//             * 这段逻辑等待封装成参数替换方法
+//             */
+    //替换${}的方法
+//            Properties properties = new Properties();
+//            condition.forEach((k, v) -> {
+//                properties.put(k, v);
+//            });
+//            //sql：
+//            //CREATE TABLE ceshi(id varchar(50) PRIMARY KEY NOT NULL COMMENT #{field_comment}) COMMENT = #{table_comment};
+//            sql = PropertyParser.parse(sql, properties);
+//            //自己的替换逻辑，最后生成newSql
+////            GenericTokenParser genericTokenParser = new GenericTokenParser("${", "}", new TokenHandler() {
+////                @Override
+////                public String handleToken(String content) {
+////                    //自己的替换逻辑
+////                    return "?";
+////                }
+////            });
+////            //newSql：CREATE TABLE null(null null PRIMARY KEY NOT NULL COMMENT #{field_comment} ) COMMENT = #{table_comment};
+////            String newSql = genericTokenParser.parse(sql);
+//
+//            //替换标签方法
+////            XMLMapperBuilder xmlMapperBuilder = new XMLMapperBuilder();
+    //替换#{}为?方法
+//            SqlSourceBuilder sqlSourceBuilder = new SqlSourceBuilder(this.configuration);
+//            staticSqlSource = (StaticSqlSource) sqlSourceBuilder.parse(sql, Map.class, condition);
+//            BoundSql boundSql = staticSqlSource.getBoundSql(condition);
+////            parameterMappings = boundSql.getParameterMappings();
+//            sql = boundSql.getSql();
+//        }
+    //构建msId
+//        String msId = createMsId(condition.getClass() + sql, SqlCommandType.INSERT);
+//        if (hashMappedStatement(msId)) {
+//            return msId;
+//        }
+//        buildInsertMappedStatement(msId, staticSqlSource);
+//        return msId;
+//    }
 
 
 }

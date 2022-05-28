@@ -1,72 +1,141 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" ondragstart="return false">
 
 <head>
-    <meta charset="UTF-8">
-    <title>index</title>
-    <script type="text/javascript" src="/core/main/common.js"></script>
-    <!-- <script type="text/javascript" src="/core/main/main.js"></script> -->
-    <!-- <script type="text/javascript" src="/index.js"></script> -->
-    <script>
-        window.importjs([
-            "/index.js"
-        ]);
-    </script>
-
+      <meta charset="UTF-8">
+      <meta name="Keywords" content="">
+      <meta name="Description" content="">
+      <title>憨批</title>
+      <script type="text/javascript" src="/core/main/js/common.js"></script>
+      <script>
+            window.importcss([
+                  "/core/main/css/index.css"
+            ]);
+            window.importjs([
+                  "/core/main/js/index.js"
+            ]);
+      </script>
 </head>
 
 <body>
-    <form class="layui-form" lay-filter="table_form" style="padding-top: 50px;padding-left: 200px;">
-        <div class="layui-form-item">
-            <label class="layui-form-label">表名称</label>
-            <div class="layui-input-block">
-                <input type="text" name="table_name" style="width: 300px;" id="table_name" lay-verify="required"
-                    placeholder="请输入数据表名称" class="layui-input">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">表中文名</label>
-            <div class="layui-input-block">
-                <input type="text" name="remark" style="width: 300px;" id="remark" placeholder="请输入表中文名"
-                    autocomplete="off" class="layui-input">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">主键字段名</label>
-            <div class="layui-input-block">
-                <input type="text" name="primary_field_name" style="width: 300px;" id="primary_field_name"
-                    lay-verify="required" placeholder="请输入主键名" autocomplete="off" class="layui-input">
-            </div>
-        </div>
-        <!-- 下拉框 -->
-        <div class="layui-form-item">
-            <label class="layui-form-label">主键字段类型</label>
-            <div class="layui-input-inline">
-                <select name="primary_field_type" id="primary_field_type" lay-filter="lay-primary_field_type">
-                    <option value="varchar" selected>varchar</option>
-                    <option value="int">int</option>
-                    <option value="decimal">decimal</option>
-                    <option value="text">text</option>
-                    <option value="timestamp">timestamp</option>
-                </select>
-            </div>
-        </div>
+      <!-- 盒子容器 -->
+      <div class="perspective">
+            <div class="wrap" id="imgwrap">
+                  <!-- 引入图片值页面 -->
+                  <img class="f1" src="img/12.jpg" />
+                  <img class="f1" src="img/13.jpg" />
+                  <img class="f1" src="img/14.jpg" />
+                  <img class="f1" src="img/15.jpg" />
+                  <img class="f1" src="img/16.jpg" />
+                  <img class="f1" src="img/1.jpg" />
+                  <img class="f1" src="img/2.jpg" />
+                  <img class="f1" src="img/3.jpg" />
+                  <img class="f1" src="img/4.jpg" />
+                  <img class="f1" src="img/5.jpg" />
+                  <img class="f1" src="img/6.jpg" />
+                  <img class="f1" src="img/7.jpg" />
+                  <img class="f1" src="img/5.jpg" />
+                  <img class="f1" src="img/6.jpg" />
+                  <img class="f1" src="img/7.jpg" />
+                  <img class="f1" src="img/8.jpg" />
+                  <img class="f1" src="img/9.jpg" />
+                  <img class="f1" src="img/10.jpg" />
+                  <img class="f1" src="img/11.jpg" />
 
-        <div class="layui-form-item">
-            <label class="layui-form-label">主键字段长度</label>
-            <div class="layui-input-block">
-                <input type="text" name="primary_field_length" style="width: 300px;" id="primary_field_length"
-                    lay-verify="number" placeholder="请输入主键名" autocomplete="off" class="layui-input">
-            </div>
-        </div>
+                  <img class="f1" src="img/17.jpg" />
+                  <img class="f1" src="img/18.jpg" />
+                  <img class="f1" src="img/19.jpg" />
+                  <img class="f1" src="img/20.jpg" />
+                  <img class="f1" src="img/21.jpg" />
+                  <img class="f1" src="img/22.jpg" />
+                  <img class="f1" src="img/23.jpg" />
+                  <img class="f1" src="img/24.jpg" />
+                  <img class="f1" src="img/25.jpg" />
+                  <img class="f1" src="img/26.jpg" />
+                  <img class="f1" src="img/27.jpg" />
+                  <img class="f1" src="img/28.jpg" />
+                  <img class="f1" src="img/29.jpg" />
+                  <img class="f1" src="img/30.jpg" />
 
-        <div class="layui-form-item">
-            <div class="layui-input-block">
-                <button class="layui-btn" type="button" lay-submit id="submit" lay-filter="formDemo">立即提交</button>
-                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                  <!-- 引入图片值页面 -->
+                  <img class="f2" src="img/1.jpg" />
+                  <img class="f2" src="img/2.jpg" />
+                  <img class="f2" src="img/3.jpg" />
+                  <img class="f2" src="img/4.jpg" />
+                  <img class="f2" src="img/5.jpg" />
+
+                  <img class="f2" src="img/9.jpg" />
+                  <img class="f2" src="img/10.jpg" />
+                  <img class="f2" src="img/11.jpg" />
+                  <img class="f2" src="img/12.jpg" />
+                  <img class="f2" src="img/25.jpg" />
+                  <img class="f2" src="img/26.jpg" />
+                  <img class="f2" src="img/27.jpg" />
+                  <img class="f2" src="img/28.jpg" />
+                  <img class="f2" src="img/29.jpg" />
+                  <img class="f2" src="img/30.jpg" />
+                  <img class="f2" src="img/13.jpg" />
+                  <img class="f2" src="img/14.jpg" />
+                  <img class="f2" src="img/15.jpg" />
+                  <img class="f2" src="img/16.jpg" />
+                  <img class="f2" src="img/17.jpg" />
+                  <img class="f2" src="img/18.jpg" />
+                  <img class="f2" src="img/19.jpg" />
+                  <img class="f2" src="img/20.jpg" />
+                  <img class="f2" src="img/21.jpg" />
+                  <img class="f2" src="img/22.jpg" />
+                  <img class="f2" src="img/23.jpg" />
+                  <img class="f2" src="img/24.jpg" />
+                  <img class="f2" src="img/6.jpg" />
+                  <img class="f2" src="img/7.jpg" />
+                  <img class="f2" src="img/5.jpg" />
+                  <img class="f2" src="img/6.jpg" />
+                  <img class="f2" src="img/7.jpg" />
+                  <img class="f2" src="img/8.jpg" />
+                  <!-- 引入图片值页面 -->
+
+                  <img class="f3" src="img/1.jpg" />
+                  <img class="f3" src="img/2.jpg" />
+                  <img class="f3" src="img/11.jpg" />
+                  <img class="f3" src="img/12.jpg" />
+                  <img class="f3" src="img/25.jpg" />
+                  <img class="f3" src="img/26.jpg" />
+                  <img class="f3" src="img/27.jpg" />
+                  <img class="f3" src="img/3.jpg" />
+                  <img class="f3" src="img/4.jpg" />
+                  <img class="f3" src="img/5.jpg" />
+
+
+                  <img class="f3" src="img/16.jpg" />
+                  <img class="f3" src="img/17.jpg" />
+                  <img class="f3" src="img/18.jpg" />
+                  <img class="f3" src="img/10.jpg" />
+
+                  <img class="f3" src="img/28.jpg" />
+                  <img class="f3" src="img/29.jpg" />
+                  <img class="f3" src="img/30.jpg" />
+                  <img class="f3" src="img/13.jpg" />
+
+                  <img class="f3" src="img/19.jpg" />
+                  <img class="f3" src="img/20.jpg" />
+                  <img class="f3" src="img/21.jpg" />
+                  <img class="f3" src="img/22.jpg" />
+                  <img class="f3" src="img/23.jpg" />
+                  <img class="f3" src="img/24.jpg" />
+                  <img class="f3" src="img/9.jpg" />
+                  <img class="f3" src="img/14.jpg" />
+                  <img class="f3" src="img/15.jpg" />
+                  <img class="f3" src="img/6.jpg" />
+                  <img class="f3" src="img/7.jpg" />
+                  <img class="f3" src="img/5.jpg" />
+                  <img class="f3" src="img/6.jpg" />
+                  <img class="f3" src="img/7.jpg" />
+                  <img class="f3" src="img/8.jpg" />
+
+
+                  <p></p>
             </div>
-        </div>
-    </form>
+      </div>
 </body>
 
 </html>
