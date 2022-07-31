@@ -16,9 +16,16 @@
 <body>
     <form class="layui-form" lay-filter="table_form" style="padding-top: 50px;padding-left: 200px;">
         <div class="layui-form-item">
-            <label class="layui-form-label">字段名</label>
+            <label class="layui-form-label">表名</label>
             <div class="layui-input-block">
                 <input type="text" name="table_name" style="width: 300px;" id="table_name" lay-verify="required"
+                    placeholder="请输入表名" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">字段名</label>
+            <div class="layui-input-block">
+                <input type="text" name="field_name" style="width: 300px;" id="field_name" lay-verify="required"
                     placeholder="请输入字段名" class="layui-input">
             </div>
         </div>
@@ -29,40 +36,33 @@
                     autocomplete="off" class="layui-input">
             </div>
         </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">主键字段名</label>
-            <div class="layui-input-block">
-                <input type="text" name="primary_field_name" style="width: 300px;" id="primary_field_name"
-                    lay-verify="required" placeholder="请输入主键名" autocomplete="off" class="layui-input">
-            </div>
-        </div>
         <!-- 下拉框 -->
         <div class="layui-form-item">
-            <label class="layui-form-label">主键字段类型</label>
+            <label class="layui-form-label">字段类型</label>
             <div class="layui-input-inline">
-                <select name="primary_field_type" id="primary_field_type" lay-filter="lay-primary_field_type">
-                    <option value="varchar" selected>varchar(字符串)</option>
-                    <option value="int">int(整数)</option>
-                    <option value="decimal">decimal(小数)</option>
-                    <option value="text">text(长文本)</option>
-                    <option value="timestamp">timestamp(时间)</option>
+                <select name="field_type" id="field_type" lay-filter="lay_field_type">
+                    <option value="varchar" selected>varchar</option>
+                    <option value="int">int</option>
+                    <option value="decimal">decimal</option>
+                    <option value="text">text</option>
+                    <option value="timestamp">timestamp</option>
                 </select>
             </div>
         </div>
 
         <div class="layui-form-item" id="field_length">
-            <label class="layui-form-label">主键字段长度</label>
+            <label class="layui-form-label">字段长度</label>
             <div class="layui-input-block">
-                <input type="text" name="primary_field_length" style="width: 300px;" id="primary_field_length"
-                    lay-verify="number" placeholder="请输入主键字段长度" autocomplete="off" class="layui-input">
+                <input type="text" name="field_length" style="width: 300px;" id="field_length" lay-verify="number"
+                    placeholder="请输入字段长度" autocomplete="off" class="layui-input">
             </div>
         </div>
 
-        <div class="layui-form-item" id="field_decimal">
+        <div class="layui-form-item" id="file_precision">
             <label class="layui-form-label">字段小数点位数</label>
             <div class="layui-input-block">
-                <input type="text" name="primary_field_decimal" style="width: 300px;" id="primary_field_decimal"
-                    lay-verify="number" placeholder="请输入小数点位数" autocomplete="off" class="layui-input">
+                <input type="text" name="file_precision" style="width: 300px;" id="file_precision" lay-verify="number"
+                    placeholder="请输入小数点位数" autocomplete="off" class="layui-input">
             </div>
         </div>
 

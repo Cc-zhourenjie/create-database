@@ -6,7 +6,7 @@ $(function () {
         var form = layui.form; //只有执行了这一步，部分表单元素才会自动修饰成功
         form.render();
         //下拉框赋事件
-        form.on('select(lay-primary_field_type)', function (data) {
+        form.on('select(lay_field_type)', function (data) {
             resetField(data.value);
         });
 
@@ -19,7 +19,7 @@ $(function () {
         //获取表单区域所有值
         var form = layui.form;
         var datas = form.val("table_form");
-        var result = ajax("post", "/tableinfo/createtable", datas);
+        var result = ajax("post", "/table/field/createfield", datas);
         if (result.data) {
             //添加成功
             $.messager.confirm('确认', '添加成功，请刷新页面', function (ok) {
@@ -34,35 +34,48 @@ $(function () {
             });
         }
     })
-
-    resetField($("#primary_field_type").val())
+    resetField($("#field_type").val())
 
 })
 
 
-//重置字段长度
+/**
+ * 重置字段长度
+ * @param {字段类型值} value 
+ */
 function resetField(value) {
     if (value == "varchar") {
         $("#field_length").show();
-        $("#field_decimal").hide();
+        $("#file_precision").hide();
     }
     else if (value == "int") {
         $("#field_length").show();
-        $("#field_decimal").hide();
+        $("#file_precision").hide();
     }
     else if (value == "decimal") {
         $("#field_length").show();
-        $("#field_decimal").show();
+        $("#file_precision").show();
     }
     else if (value == "text") {
         $("#field_length").hide();
-        $("#field_decimal").hide();
+        $("#file_precision").hide();
     }
     else {
         $("#field_length").hide();
-        $("#field_decimal").hide();
+        $("#file_precision").hide();
     }
 
+
+}
+
+/**
+ * 校验字段类型和长度是否匹配
+ * @param {表单数据} data 
+ */
+function checkFieldType(data) {
+    if (data.field_type == "varcahr" && data.field_length == "" || data.field_length == 0) {
+
+    }
 
 }
 

@@ -19,7 +19,7 @@ $(function () {
         //获取表单区域所有值
         var form = layui.form;
         var datas = form.val("table_form");
-        var result = ajax("post", "/tableinfo/createtable", datas);
+        var result = ajax("post", "/table/info/createtable", datas);
         if (result.data) {
             //添加成功
             $.messager.confirm('确认', '添加成功，请刷新页面', function (ok) {
