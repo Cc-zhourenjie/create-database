@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 数据表服务层
+ * 操作物理表服务层
  *
  * @author cc
  */
@@ -37,7 +37,7 @@ public class TableInfoServiceImpl implements TableInfoService {
     public Boolean createTable(TableInfoVO tableInfoVO) {
         try {
             //获取sql
-            String createTableSql = CcSql.getSqlText("core", "test", "create_table");
+            String createTableSql = CcSql.getSqlText("core", "table_sql", "create_table");
             CcMapperUtils ccMapperUtils = new CcMapperUtils();
             //构架sql条件
             Map<String, Object> condition = new HashMap<>();

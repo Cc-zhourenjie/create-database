@@ -13,20 +13,5 @@
         </script>
     </sql>
 
-    <!--  创建字段  -->
-    <sql id="create_field">
-        alter table #{table_name} add #{field_name} #{field_type};
-    </sql>
-
-    <!--  判断是否可以为空  -->
-    <setting id="is_null">
-        #{is_null}
-    </setting>
-
-    <!--  添加字段或者数据表注释/备注  -->
-    <setting id="remark">
-        COMMENT = '#{remark}';
-    </setting>
-
 </sqls>
 

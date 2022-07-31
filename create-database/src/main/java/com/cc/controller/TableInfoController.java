@@ -6,6 +6,8 @@ import com.cc.pojo.vo.TableInfoVO;
 import com.cc.service.TableInfoService;
 import com.cc.utils.ResultData;
 import org.apache.ibatis.session.SqlSession;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,10 +19,11 @@ import java.util.Map;
  *
  * @author zrj
  */
-@RequestMapping("/tableinfo")
+@RequestMapping("/table/info")
 @RestController
 public class TableInfoController {
 
+    private static final Logger lg = LoggerFactory.getLogger(TableInfoController.class);
 
     @Autowired
     private TableInfoService tableInfoService;
@@ -32,12 +35,16 @@ public class TableInfoController {
 
     @PostMapping("createtable")
     public ResultData createTable(@RequestBody TableInfoVO tableInfoVO) {
-        ResultData resultData = ResultData.init();
-        Boolean flag = tableInfoService.createTable(tableInfoVO);
-        if (!flag) ResultData.failedMsg("创建数据表异常！");
+        ResultData resultData = null;
+        try {
+            resultData = ResultData.init();
+            Boolean flag = tableInfoService.createTable(tableInfoVO);
+            if (!flag) ResultData.failedMsg("创建数据表异常！");
+        } catch (Exception e) {
+            lg.error("创建物理表异常", e);
+        }
         return resultData;
     }
-
 
     @GetMapping("seleuserinfo")
     public ResultData seleUserInfo(@RequestParam String id) {

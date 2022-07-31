@@ -15,7 +15,7 @@ public class XMLRTest {
     public static void main(String[] args) {
         SAXReader reader = new SAXReader();
         try {
-            String fileName = "test.xml";
+            String fileName = "field_sql.xml";
             //获取当前项目路径
             String classPath = Thread.currentThread().getContextClassLoader().getResource("").toString();
             classPath = classPath.substring(classPath.indexOf("/") + 1);

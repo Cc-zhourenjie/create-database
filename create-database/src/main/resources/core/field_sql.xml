@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<sqls>
+    <!--  创建字段  -->
+    <sql id="create_field">
+        <script>
+            alter table ${table_name} add ${field_name} ${field_type}
+            <if test="is_null == null or is_null != 0">
+                NULL
+            </if>
+            <if test="is_null != null and is_null != 1">
+                NOT NULL
+            </if>
+            <if test="remark != null and remark != ''">
+                COMMENT '#{remark}'
+            </if>
+            ;
+        </script>
+    </sql>
+
+</sqls>
+

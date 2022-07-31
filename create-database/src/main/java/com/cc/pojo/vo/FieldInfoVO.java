@@ -7,6 +7,8 @@ import java.io.Serializable;
 
 /**
  * 表字段对象
+ *
+ * @author cc
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class FieldInfoVO implements Serializable {
@@ -24,10 +26,16 @@ public class FieldInfoVO implements Serializable {
     private String fieldType;
 
     /**
-     * 字段类型
+     * 字段长度
      */
     @JsonProperty("field_length")
     private String fieldLength;
+
+    /**
+     * 字段精度
+     */
+    @JsonProperty("file_precision")
+    private Integer fieldPrecision;
 
     /**
      * 字段注释
@@ -41,6 +49,11 @@ public class FieldInfoVO implements Serializable {
     @JsonProperty("is_null")
     private Integer isNull;
 
+    /**
+     * 表名
+     */
+    @JsonProperty("table_name")
+    private String tableName;
 
     public String getFieldName() {
         return fieldName;
@@ -66,6 +79,14 @@ public class FieldInfoVO implements Serializable {
         this.fieldLength = fieldLength;
     }
 
+    public Integer getFieldPrecision() {
+        return fieldPrecision;
+    }
+
+    public void setFieldPrecision(Integer fieldPrecision) {
+        this.fieldPrecision = fieldPrecision;
+    }
+
     public String getRemark() {
         return remark;
     }
@@ -80,5 +101,13 @@ public class FieldInfoVO implements Serializable {
 
     public void setIsNull(Integer isNull) {
         this.isNull = isNull;
+    }
+
+    public String getTableName() {
+        return tableName;
+    }
+
+    public void setTableName(String tableName) {
+        this.tableName = tableName;
     }
 }
