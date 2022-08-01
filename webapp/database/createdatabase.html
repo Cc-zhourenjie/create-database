@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>index</title>
+    <title>新增物理表</title>
     <script type="text/javascript" src="/core/main/js/common.js"></script>
     <script>
         window.importjs([
@@ -18,8 +18,8 @@
         <div class="layui-form-item">
             <label class="layui-form-label">表名称</label>
             <div class="layui-input-block">
-                <input type="text" name="table_name" style="width: 300px;" id="table_name" lay-verify="required"
-                    placeholder="请输入数据表名称" class="layui-input">
+                <input type="text" name="table_name" style="width: 300px;" id="table_name" placeholder="请输入数据表名称"
+                    class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
@@ -32,15 +32,15 @@
         <div class="layui-form-item">
             <label class="layui-form-label">主键字段名</label>
             <div class="layui-input-block">
-                <input type="text" name="field_name" style="width: 300px;" id="field_name"
-                    lay-verify="required" placeholder="请输入主键名" autocomplete="off" class="layui-input">
+                <input type="text" name="field_name" style="width: 300px;" id="field_name" placeholder="请输入主键名"
+                    autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">主键字段中文名</label>
             <div class="layui-input-block">
-                <input type="text" name="field_name_en" style="width: 300px;" id="field_name_en"
-                    lay-verify="required" placeholder="请输入主键中文名" autocomplete="off" class="layui-input">
+                <input type="text" name="field_name_en" style="width: 300px;" id="field_name_en" placeholder="请输入主键中文名"
+                    autocomplete="off" class="layui-input">
             </div>
         </div>
         <!-- 下拉框 -->
@@ -60,16 +60,16 @@
         <div class="layui-form-item" id="field_length">
             <label class="layui-form-label">主键字段长度</label>
             <div class="layui-input-block">
-                <input type="text" name="field_length" style="width: 300px;" id="field_length"
-                    lay-verify="number" placeholder="请输入主键字段长度" autocomplete="off" class="layui-input">
+                <input type="text" name="field_length" style="width: 300px;" id="field_length" placeholder="请输入主键字段长度"
+                    autocomplete="off" class="layui-input">
             </div>
         </div>
 
         <div class="layui-form-item" id="field_decimal">
             <label class="layui-form-label">字段小数点位数</label>
             <div class="layui-input-block">
-                <input type="text" name="field_decimal" style="width: 300px;" id="field_decimal"
-                    lay-verify="number" placeholder="请输入小数点位数" autocomplete="off" class="layui-input">
+                <input type="text" name="field_decimal" style="width: 300px;" id="field_decimal" placeholder="请输入小数点位数"
+                    autocomplete="off" class="layui-input">
             </div>
         </div>
 
@@ -77,6 +77,8 @@
             <div class="layui-input-block">
                 <button class="layui-btn" type="button" lay-submit id="submit" lay-filter="formDemo">立即提交</button>
                 <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                <button class="layui-btn layui-btn-warm" type="button" lay-submit id="field"
+                    lay-filter="formDemo">添加字段</button>
             </div>
         </div>
     </form>

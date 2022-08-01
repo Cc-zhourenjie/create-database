@@ -22,10 +22,9 @@ $(function () {
         var result = ajax("post", "/table/info/createtable", datas);
         if (result.data) {
             //添加成功
-            $.messager.confirm('确认', '添加成功，请刷新页面', function (ok) {
-                if (ok) {
-                    location.reload();
-                }
+            layer.open({
+                title: '响应结果',
+                content: '添加成功，请刷新页面'
             });
         } else {
             //添加失败
@@ -33,6 +32,12 @@ $(function () {
 
             });
         }
+    })
+
+    //添加字段
+    $("#field").click(function () {
+        var url = "/database/createfield.html";
+        window.open(url);
     })
 
     resetField($("#field_type").val())

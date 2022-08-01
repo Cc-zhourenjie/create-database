@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>新增物理表</title>
+    <script type="text/javascript" src="/core/main/js/common.js"></script>
+    <script>
+        window.importjs([
+            "/database/createtableorfield.js"
+        ]);
+    </script>
+
+</head>
+
+<body>
+    <div class="layui-tab layui-tab-brief" lay-filter="database_tab">
+        <ul class="layui-tab-title">
+            <li class="layui-this" value="table">创建物理表</li>
+            <li value="field">创建字段</li>
+        </ul>
+        <div class="layui-tab-content">
+            <iframe frameborder="0" scrolling="auto" style="width:100%;height:500px;" name="url" id="tab_url"
+                src="/database/createdatabase.html"></iframe>
+        </div>
+    </div>
+</body>
+
+</html>
